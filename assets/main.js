@@ -24,7 +24,7 @@ const news = {
 
 const reddit = {
   URL: function() {
-    return this.searchTerm ? `http://www.reddit.com/search.json?q=${this.searchTerm}` :
+    return this.searchTerm ? `https://www.reddit.com/search.json?q=${this.searchTerm}` :
            `http://www.reddit.com/.json?limit=20`;
   },
   searchTerm: '',
