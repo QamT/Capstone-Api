@@ -8,10 +8,10 @@
     "postcss-cli": "^6.0.0"
   },
   "scripts": {
-    "watch": "node-sass sass/main.scss css/style.css -w",
-    "compile": "node-sass sass/main.scss css/style.css",
-    "prefix": "postcss css/style.css --use autoprefixer -o css/style.css",
-    "compress": "node-sass css/style.css css/style.css --output-style compressed",
+    "watch": "node-sass sass/main.scss assets/style.css -w",
+    "compile": "node-sass sass/main.scss assets/style.css",
+    "prefix": "postcss assets/style.css --use autoprefixer -o assets/style.css",
+    "compress": "node-sass assets/style.css assets/style.css --output-style expanded",
     "build": "npm-run-all watch compile prefix compress"
   }
 }

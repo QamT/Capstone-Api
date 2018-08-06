@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>EntertainmentHub</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="header">
@@ -14,15 +13,51 @@
     <p>All Your Entertainment In One Place</p>
   </header>
 
+  <form id="search">
+    <select id="content-select">
+      <option value="all">All</option>
+      <option value="news">News</option>
+      <option value="reddit">Reddit</option>
+      <option value="youtube">Youtube</option>
+    </select>
+    <label for="content-select"></label>
+    <input type="text" id="search-bar" name="search-bar" placeholder="search">
+    <label for="search-bar"></label>
+    <button type='submit' class="btn" id="submit">Go</button>
+  </form>
+
   <main class="content">
-    <div class="content_card content_card--1">News</div>
-    <div class="content_card content_card--2">Reddit</div>
-    <div class="content_card content_card--3">Youtube</div>
-    <div class="content_card content_card--4">Social Media</div>
+    <div class="content_card content_card--1">
+      <h2>News</h2>
+      <ul class="news-navbar">
+        <li data-category='general'>General</li>
+        <li data-category='business'>Business</li>
+        <li data-category='entertainment'>Entertainment</li>
+        <li data-category='health'>Health</li>
+        <li data-category='science'>Science</li>
+        <li data-category='sports'>Sports</li>
+        <li data-category='technology'>Technology</li>
+      </ul>
+      <ul class="content_card-results1"></ul>
+    </div>
+    <div class="content_card content_card--2">
+      <h2>Reddit</h2>
+      <div class="content_card-results2"></div>
+    </div>
+    <div class="content_card content_card--3">
+      <h2>Share</h2>
+      <div class="content_card-results3"></div>
+    </div>
+    <div class="content_card content_card--4">
+      <h2>Youtube</h2>
+      <div class="content_card-results4"></div>
+    </div>
   </main>
 
   <footer class="footer">
     <p>Created by Qamar</p>
   </footer>
+
+  <script src="assets/main.js" ></script>
 </body>
 </html>

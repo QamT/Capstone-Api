@@ -5,3 +5,33 @@
 html, body {
   height: 100%;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+input,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+li {
+  list-style: none;
+}
+
+select {
+  border-radius: 0;
+}
+
+select, input, label {
+  cursor: pointer;
+}
