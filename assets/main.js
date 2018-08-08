@@ -77,8 +77,11 @@ const youtube = {
 
 init();
 
+const cards = document.getElementsByClassName('content_card');
 const newsResults = document.querySelector('.content_card-results1');
 const newsCategories = document.querySelectorAll('.news-navbar li');
+const newsNavbar = document.getElementsByClassName('news-navbar')[0];
+const newsMenu = document.getElementsByClassName('menu')[0];
 const redditResults = document.querySelector('.content_card-results2');
 const youtubeResults = document.querySelector('.content_card-results4');
 const form = document.getElementById('search');
@@ -91,28 +94,30 @@ function fetchData(url) {
 
 function renderNewsData(data) {
   let result = '';
+  let error = showError(data, news.searchTerm);
   console.log(data);
   data.forEach(data => {
     result += `<li class='news-result'>
-                  <a href='${data.url}' target='_blank' rel='noopener noreferrer'>
-                    <img src='${data.urlToImage}' class=${data.urlToImage ? '' : 'hidden'} alt='image'>
-                    <div>
-                      <h3>${data.title}</h3>
-                      <p>${data.source.name}</p>
-                    </div>
-                  </a>
+                <img src='${data.urlToImage ? data.urlToImage: '#'}' class=${data.urlToImage ? null : 'hidden'} alt='news image'>
+                <a href='${data.url}' target='_blank' rel='noopener noreferrer'>               
+                  <h3>${data.title}</h3>
+                  <p>${data.source.name}</p>                 
+                </a>
                 </li>
                 <hr>`
   });
-  newsResults.innerHTML = result;
+  newsResults.innerHTML = result ? result : error;
+  let lis = Array.from(document.querySelectorAll('.content_card-results1 li'));
+  transition(lis);
 }
 
 function renderRedditData(data) {
   let result = '';
+  let error = showError(data, reddit.searchTerm);
   console.log(data);
   data.forEach(data => {
     result += `<li class='reddit-results'>
-                <img src='${data.data.preview? data.data.preview.images[0].source.url : 'https://www.joeyoungblood.com/wp-content/uploads/2016/02/reddit-logo.jpg'}' alt='thumbnail'>
+                <img src='${data.data.preview ? data.data.preview.images[0].source.url : 'https://www.joeyoungblood.com/wp-content/uploads/2016/02/reddit-logo.jpg'}' alt='thumbnail'>
                 <div class='reddit-results_info'>
                   <span>Score: ${data.data.score}</span>
                   <a href='https://www.reddit.com${data.data.permalink}' target='_blank' rel='noopener noreferrer'>
@@ -126,19 +131,22 @@ function renderRedditData(data) {
               </li>
               <hr>`
   });
-  redditResults.innerHTML = result;
+  redditResults.innerHTML = result ? result : error;
+  let lis = Array.from(document.querySelectorAll('.content_card-results2 li'));
+  transition(lis);
 }
 
 function renderYoutubeData(data) {
   let results = '';
+  let error = showError(data, youtube.searchTerm);
   console.log(data);
   data.forEach(data => {
     results += `<li class='youtube-results'>
-                  <a href='https://www.youtube.com/watch?v=${data.id}' target='_blank' rel='noopener noreferrer'>
+                  <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
                     <img src='${data.snippet.thumbnails.medium.url}' alt='thumbnail'>  
                   </a>
                   <div>
-                    <a href='https://www.youtube.com/watch?v=${data.id}' target='_blank' rel='noopener noreferrer'>
+                    <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
                       <h3>${data.snippet.title}</h3>
                     </a>
                     <a href='https://www.youtube.com/channel/${data.snippet.channelId}' target='_blank' rel='noopener noreferrer'>
@@ -148,7 +156,24 @@ function renderYoutubeData(data) {
                 </li>
                 <hr>`
   });
-  youtubeResults.innerHTML = results;
+  youtubeResults.innerHTML = results ? results : error;
+  let lis = Array.from(document.querySelectorAll('.content_card-results4 li'));
+  transition(lis);
+}
+
+function showError(data, value) {
+  return data.length === 0 ? `<div class='error'>
+                                <h3>No results found for ${value}</h3>
+                                <p>Try a different keyword</p>
+                              </div>` : null;
+}
+
+function transition(elements) {
+  elements.forEach((li, i) => {
+   
+      li.style.animation = i < 5 ? `fadeIn ${i + 1}s` : `fadeIn 5s`;
+      li.style.opacity = 1;
+  });
 }
 
 function openContent(element) {
@@ -162,7 +187,7 @@ form.addEventListener('submit', (e) => {
   let searchBar = document.getElementById('search-bar');
   let searchTerm = searchBar.value;
   let searchContent = document.getElementById('content-select').value;
-  console.log(searchContent);
+  
   if(searchTerm) {
     switch(searchContent) {
       case 'all':
@@ -186,22 +211,37 @@ form.addEventListener('submit', (e) => {
   }
 });
 
+
+Array.from(cards).forEach(card => card.addEventListener('click', (e) => {
+
+  if (e.target.parentElement.nodeName === 'A' && window.innerHeight > 500 && window.innerWidth > 860) {
+    e.preventDefault();
+    let url = e.target.parentElement.attributes[0].nodeValue;
+    window.open(url, '_blank', `toolbar=yes,scrollbars=yes,resizable=yes,top=${window.innerHeight/4},left=${window.innerWidth/4},width=${window.innerWidth/(1.7)},height=${window.innerHeight/(1.5)}`);
+  }
+}));
+
 Array.from(newsCategories).forEach(category => category.addEventListener('click', (e) => {
   news.category = e.target.dataset.category;
   news.init();
 }));
 
-//call functions for starter data
+newsMenu.addEventListener('click', () => {
+  newsNavbar.classList.toggle('collapse');
+})
 
-//fetch data
-
-//render data 
-
-//add event listener to seach 
-
-//share data 
 function init() {
   news.init();
   reddit.init();
   youtube.init();
 }
+
+//optimization
+
+//responsiveness
+//loading data efficiently
+//accessibility 
+//transitions
+//styling
+//add web icon
+//refactor

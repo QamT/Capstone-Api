@@ -7,7 +7,7 @@
   li:not(:last-child) {
     margin-right: .8rem;
     border-right: .5px solid #000;
-    padding-right: 1rem;
+    padding-right: .8rem;
   }
 
   li {
@@ -18,4 +18,34 @@
   li:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 1080px) {
+    height: 0;
+    background: rgba(0, 0, 0, .8);
+    color: #fff;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+    transition: height .3s ease-in-out;
+
+    li:not(:last-child) {
+      margin-bottom: .5rem;
+      border-right: none;
+    }
+  }
+}
+
+.menu {
+  display: none;
+
+  @media (max-width: 1080px) {
+    display: block;
+    width: 4rem;
+  }
+}
+
+.collapse {
+  height: 20rem;
 }

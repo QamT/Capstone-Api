@@ -43,7 +43,7 @@ html {
   .content_card {
     border: 1px solid #000;
     border-radius: 3px;
-    padding: 20px;
+    padding: 2rem;
     overflow-y: scroll;
     overflow-x: hidden; }
     .content_card h2 {
@@ -55,33 +55,44 @@ html {
     .content_card--2 {
       grid-area: box2; }
     .content_card--3 {
-      grid-area: box3; }
+      grid-area: box3;
+      overflow: hidden;
+      padding-top: 1rem; }
     .content_card--4 {
       grid-area: box4; }
+    .content_card .error {
+      margin-top: 10rem;
+      text-align: center;
+      color: #cc0000;
+      font-size: 1.6rem; }
   .content_card-results1 {
+    width: 100%;
     margin-top: 2.2rem; }
     .content_card-results1 .news-result {
       margin: 1.2rem 0;
-      width: 100%; }
+      width: 100%;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: height 5s ease-in; }
       .content_card-results1 .news-result a {
-        display: flex; }
-        .content_card-results1 .news-result a div {
-          margin-left: .8rem;
-          align-self: center; }
-          .content_card-results1 .news-result a div h3 {
-            margin-bottom: .3rem;
-            font-size: 1.4rem; }
-          .content_card-results1 .news-result a div p {
-            font-size: 1.2rem; }
+        margin-left: .8rem; }
+        .content_card-results1 .news-result a h3 {
+          margin-bottom: .3rem;
+          font-size: 1.4rem; }
+        .content_card-results1 .news-result a p {
+          font-size: 1.2rem; }
       .content_card-results1 .news-result img {
         width: 15rem;
         height: 100%; }
   .content_card-results2 {
+    width: 100%;
     margin-top: 2.2rem; }
     .content_card-results2 .reddit-results {
       display: flex;
       width: 100%;
-      margin: 1.2rem 0; }
+      margin: 1.2rem 0;
+      opacity: 0; }
       .content_card-results2 .reddit-results img {
         height: 15rem;
         margin-right: 1.2rem;
@@ -95,7 +106,15 @@ html {
         align-items: center; }
         .content_card-results2 .reddit-results > div a {
           text-align: center; }
+  .content_card-results3 {
+    width: 100%;
+    display: flex;
+    justify-content: center; }
+    .content_card-results3 img {
+      width: 4.5rem;
+      margin: .4rem 0 .8rem .8rem; }
   .content_card-results4 {
+    width: 100%;
     margin-top: 2.2rem; }
     .content_card-results4 .youtube-results {
       display: flex;
@@ -103,20 +122,41 @@ html {
       align-items: center;
       margin: 1.2rem 0;
       width: 100%;
-      font-size: 1.2rem; }
+      font-size: 1.2rem;
+      opacity: 0; }
       .content_card-results4 .youtube-results img {
         height: 10rem;
         margin-bottom: .8rem; }
       .content_card-results4 .youtube-results p {
         text-align: center; }
-  @media (max-width: 600px) {
+  @media (max-width: 1020px) {
+    .content .reddit-results img {
+      height: 13rem; } }
+  @media (max-width: 860px) {
     .content {
+      height: auto;
       grid-template-columns: none;
       grid-template-rows: auto;
-      grid-template-areas: 'box1 box1' 'box2 box2' 'box4 box4' 'box3 box3'; } }
+      grid-template-areas: 'box1 box1' 'box2 box2' 'box4 box4' 'box3 box3'; }
+      .content_card {
+        max-height: 70vh; } }
+  @media (max-width: 620px) {
+    .content .reddit-results img {
+      height: 8rem; } }
+  @media (max-width: 460px) {
+    .content_card .reddit-results {
+      flex-direction: column; }
+    .content_card .news-result {
+      flex-direction: column; } }
 
 .hidden {
   display: none; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 .news-navbar {
   display: flex;
@@ -126,12 +166,36 @@ html {
   .news-navbar li:not(:last-child) {
     margin-right: .8rem;
     border-right: .5px solid #000;
-    padding-right: 1rem; }
+    padding-right: .8rem; }
   .news-navbar li {
     transition: all .3s;
     cursor: pointer; }
   .news-navbar li:hover {
     text-decoration: underline; }
+  @media (max-width: 1080px) {
+    .news-navbar {
+      height: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      margin: 0;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      z-index: 1;
+      transition: height .3s ease-in-out; }
+      .news-navbar li:not(:last-child) {
+        margin-bottom: .5rem;
+        border-right: none; } }
+
+.menu {
+  display: none; }
+  @media (max-width: 1080px) {
+    .menu {
+      display: block;
+      width: 4rem; } }
+
+.collapse {
+  height: 20rem; }
 
 #search {
   margin: 1.6rem 0;
