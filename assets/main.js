@@ -1,7 +1,7 @@
 const news = {
   URL: function(){
     return this.searchTerm ? `https://newsapi.org/v2/everything?q=${this.searchTerm}&language=en&sortBy=popularity&apiKey=${this.apiKey}` :
-                             `https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&apiKey=${this.apiKey}`;                     
+                             `https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&pageSize=5&apiKey=${this.apiKey}`;                     
   },
   apiKey: '288be39487e849e69452bd97b766832e',
   searchTerm: '',
@@ -25,7 +25,7 @@ const news = {
 const reddit = {
   URL: function() {
     return this.searchTerm ? `https://www.reddit.com/search.json?q=${this.searchTerm}` :
-           `https://www.reddit.com/.json?limit=20`;
+           `https://www.reddit.com/.json?limit=5`;
   },
   searchTerm: '',
   // template: `<li class='reddit-results'>
@@ -51,7 +51,7 @@ const reddit = {
 const youtube = {
   URL: function() {
     return this.searchTerm ? `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.searchTerm}&maxResults=20&key=${this.apiKey}` :
-    `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&regionCode=us&key=${this.apiKey}`
+    `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&regionCode=us&key=${this.apiKey}`
   },
   apiKey : 'AIzaSyAWIf0o8EKYS4YqbXrVLMmIR3-dOrLgteE',
   searchTerm: '',
