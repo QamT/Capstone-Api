@@ -7,11 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>EntertainmentHub</title>
   <link rel="preload" href="assets/style.css" as='style'>
+  <link rel="preload" href="assets/main.js" as='script'>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="header">
-    <h1>Entertainment<span>Hub</span></h1>
+    <h1>EntertainmentHub</h1>
     <p>All Your Entertainment In One Place</p>
   </header>
 
@@ -29,6 +31,7 @@
   <main class="content">
     <div class="content_card content_card--1">
       <h2>News</h2>
+      <span>powered by news api</span>
       <span><img class='menu' src="images/hamburger-menu.png" alt="hamburger menu"></span>
       <ul class="news-navbar">
         <li data-category='general'>General</li>
@@ -43,6 +46,7 @@
     </div>
     <div class="content_card content_card--2">
       <h2>Reddit</h2>
+      <span>powered by reddit api</span>
       <div class="content_card-results2" role="list"></div>
     </div>
     <div class="content_card content_card--3">
@@ -55,6 +59,7 @@
     </div>
     <div class="content_card content_card--4">
       <h2>Youtube</h2>
+      <span>powered by youtube api</span>
       <div class="content_card-results4" role="list"></div>
     </div>
   </main>
@@ -63,6 +68,7 @@
     <p>Created by Qamar</p>
   </footer>
 
-  <script src="assets/main.js" async></script>
+  <script src="assets/main.js"></script>
+  <script src='https://unpkg.com/smoothscroll-polyfill@0.4.3/dist/smoothscroll.min.js'></script>
 </body>
 </html>
