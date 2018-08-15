@@ -255,6 +255,7 @@ function init() {
 }
 
 //styling
+//style error page
 
 //accessibility 
 //responsiveness

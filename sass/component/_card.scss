@@ -1,6 +1,6 @@
 .content {
   height: 105vh;
-  padding: 2rem 3rem;
+  // padding: 2rem 3rem;
   background: $main;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -11,7 +11,7 @@
                        'box1 box4'
                        'box1 box4'
                        'box3 box4';
-  grid-gap: 1.5rem;
+  grid-gap: 1rem;
 
   &_card {
     background: $light;
@@ -163,10 +163,10 @@
     height: auto;
     grid-template-columns: none;
     grid-template-rows: auto;
-    grid-template-areas:'box1 box1'
-                        'box2 box2'
-                        'box4 box4'
-                        'box3 box3';
+    grid-template-areas:'box1'
+                        'box2'
+                        'box4'
+                        'box3';
 
     &_card {
       max-height: 70vh;
@@ -203,7 +203,7 @@
 }
 
 .lazy1, .lazy2, .lazy4 {
-  background: url(../images/loading.gif);
+  background: url(../images/src/loading.gif);
   background-size: cover;
 }
 

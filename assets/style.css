@@ -17,7 +17,8 @@
 
 html, body {
   height: 100%;
-  margin: 0; }
+  margin: 0;
+  overflow-x: hidden; }
 
 h1,
 h2,
@@ -50,13 +51,12 @@ html {
 
 .content {
   height: 105vh;
-  padding: 2rem 3rem;
   background: #a9b7c0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-template-areas: 'box1 box2' 'box1 box2' 'box1 box2' 'box1 box4' 'box1 box4' 'box3 box4';
-  grid-gap: 1.5rem; }
+  grid-gap: 1rem; }
   .content_card {
     background: #F5F5F5;
     border: 1px solid #AB978A;
@@ -153,7 +153,7 @@ html {
       height: auto;
       grid-template-columns: none;
       grid-template-rows: auto;
-      grid-template-areas: 'box1 box1' 'box2 box2' 'box4 box4' 'box3 box3'; }
+      grid-template-areas: 'box1' 'box2' 'box4' 'box3'; }
       .content_card {
         max-height: 70vh; } }
   @media (max-width: 620px) {
@@ -170,7 +170,7 @@ html {
         text-align: center; } }
 
 .lazy1, .lazy2, .lazy4 {
-  background: url(../images/loading.gif);
+  background: url(../images/src/loading.gif);
   background-size: cover; }
 
 .lazy1, .lazy4 {
@@ -253,7 +253,7 @@ img[data-src4] {
 
 .header {
   height: 91vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/background.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/build/background.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

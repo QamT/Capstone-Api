@@ -1,6 +1,6 @@
 .header {
   height: 91vh;
-  background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url('../images/background.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url('../images/build/background.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -26,7 +26,3 @@
     font-size: 2.2rem;
   }
 }
-
-//search takes view to results
-//style error page
-//image compression
