@@ -1,6 +1,7 @@
 .content {
-  height: 100vh;
-  padding: 2rem 6rem;
+  height: 105vh;
+  padding: 2rem 3rem;
+  background: $main;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -10,18 +11,25 @@
                        'box1 box4'
                        'box1 box4'
                        'box3 box4';
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
 
   &_card {
-    border: 1px solid #000;
+    background: $light;
+    border: 1px solid #AB978A;
     border-radius: 3px;
+    box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.4);
     padding: 2rem;
     overflow-y: scroll;
     overflow-x: hidden;
-
+    
     h2 {
       font-size: 2.2rem;
       font-weight: 400;
+      text-align: center;
+    }
+
+    > span:first-of-type {
+      display: block;
       text-align: center;
     }
 
@@ -60,8 +68,6 @@
       width: 100%;
       display: flex;
       align-items: center;
-      opacity: 0;
-      transition: height 5s ease-in;
 
       a {
         margin-left: .8rem;
@@ -78,7 +84,6 @@
 
       img {
         width: 15rem;
-        height: 100%;
       }
     }
   }
@@ -91,14 +96,12 @@
       display: flex;
       width: 100%;
       margin: 1.2rem 0;
-      opacity: 0;
-
-      img {
-        height: 15rem;
-        margin-right: 1.2rem;
-        align-self: center;
+   
+       img {
+        width: 20rem;
       }
-      > div {
+
+      .reddit-results_info {
         font-size: 1.4rem;
         width: 100%;
         display: flex;
@@ -135,11 +138,13 @@
       margin: 1.2rem 0;
       width: 100%;
       font-size: 1.2rem;
-      opacity: 0;
 
       img {
         height: 10rem;
-        margin-bottom: .8rem;
+      }
+
+      h3 {
+        text-align: center;
       }
 
       p {
@@ -150,7 +155,7 @@
 
   @media (max-width: 1020px) {
     .reddit-results img {
-      height: 13rem;
+      width: 15rem;
     }
   }
 
@@ -170,30 +175,64 @@
 
   @media (max-width: 620px) {
     .reddit-results img {
-      height: 8rem;
+      width: 13rem;
     }
   }
 
   @media (max-width: 460px) {
     &_card {
       //max-height: 
-      
+
       .reddit-results {
         flex-direction: column;
+
+        > div:first-of-type {
+           margin: 0 auto;
+        }
       }
 
       .news-result {
         flex-direction: column;
+
+        h3, p {
+          text-align: center;
+        }
       }
     }
   }
+}
+
+.lazy1, .lazy2, .lazy4 {
+  background: url(../images/loading.gif);
+  background-size: cover;
+}
+
+.lazy1, .lazy4 {
+  height: 10rem;
+  width: 15rem;
+}
+
+.lazy2 {
+  height: 15rem;
+  width: 20rem;
+}
+
+.lazy4 {
+  margin-bottom: .8rem;
+}
+
+img[data-src1], 
+img[data-src2], 
+img[data-src4] {
+  opacity: 0;
 }
 
 .hidden {
   display: none;
 }
 
-@keyframes fadeIn{
-  0% {opacity: 0}
-  100% {opacity: 1};
-}
+
+
+
+
+

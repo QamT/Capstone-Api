@@ -1,14 +1,32 @@
 .header {
-  text-align: center;
+  height: 91vh;
+  background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url('../images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 0;
+
+  > * {
+    opacity: 0;
+    animation: slideTop .8s ease-in-out .2s both; 
+  }
 
   h1 {
-    font-size: 3.8rem;
-    margin: 1rem 0;
+    font-size: 5.2rem;
     line-height: 1.4;
     letter-spacing: .7px;
   }
 
   p {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 }
+
+//search takes view to results
+//style error page
+//image compression
