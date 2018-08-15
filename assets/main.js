@@ -1,7 +1,7 @@
 const news = {
   URL: function(){
     return this.searchTerm ? `https://newsapi.org/v2/everything?q=${this.searchTerm}&language=en&sortBy=popularity&apiKey=${this.apiKey}` :
-                             `https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&pageSize=5&apiKey=${this.apiKey}`;                     
+                             `https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&pageSize=10&apiKey=${this.apiKey}`;                     
   },
   apiKey: '288be39487e849e69452bd97b766832e',
   searchTerm: '',
@@ -24,8 +24,8 @@ const news = {
 
 const reddit = {
   URL: function() {
-    return this.searchTerm ? `https://www.reddit.com/search.json?q=${this.searchTerm}` :
-           `https://www.reddit.com/.json?limit=5`;
+    return this.searchTerm ? `https://www.reddit.com/search.json?q=${this.searchTerm}&limit=15` :
+           `https://www.reddit.com/.json?limit=10`;
   },
   searchTerm: '',
   // template: `<li class='reddit-results'>
@@ -47,11 +47,11 @@ const reddit = {
     .then(data => renderRedditData(data.data.children));
   }
 }
-
+// renderRedditData(data.data.children)
 const youtube = {
   URL: function() {
     return this.searchTerm ? `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.searchTerm}&maxResults=20&key=${this.apiKey}` :
-    `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&regionCode=us&key=${this.apiKey}`
+    `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&regionCode=us&key=${this.apiKey}`
   },
   apiKey : 'AIzaSyAWIf0o8EKYS4YqbXrVLMmIR3-dOrLgteE',
   searchTerm: '',
@@ -77,6 +77,7 @@ const youtube = {
 
 init();
 
+const mainContent = document.getElementsByClassName('content')[0];
 const cards = document.getElementsByClassName('content_card');
 const newsResults = document.querySelector('.content_card-results1');
 const newsCategories = document.querySelectorAll('.news-navbar li');
@@ -97,8 +98,9 @@ function renderNewsData(data) {
   let error = showError(data, news.searchTerm);
   console.log(data);
   data.forEach(data => {
+
     result += `<li class='news-result'>
-                <img src='${data.urlToImage ? data.urlToImage: '#'}' class=${data.urlToImage ? null : 'hidden'} alt='news image'>
+                <div class=${data.urlToImage ? 'lazy1' : null}><img class='lazy' data-src1='${data.urlToImage ? data.urlToImage: '#'}' class=${data.urlToImage ? null : 'hidden'} alt='news image'></div>
                 <a href='${data.url}' target='_blank' rel='noopener noreferrer'>               
                   <h3>${data.title}</h3>
                   <p>${data.source.name}</p>                 
@@ -107,6 +109,7 @@ function renderNewsData(data) {
                 <hr>`
   });
   newsResults.innerHTML = result ? result : error;
+  loadImages(1);
   let lis = Array.from(document.querySelectorAll('.content_card-results1 li'));
   transition(lis);
 }
@@ -117,7 +120,7 @@ function renderRedditData(data) {
   console.log(data);
   data.forEach(data => {
     result += `<li class='reddit-results'>
-                <img src='${data.data.preview ? data.data.preview.images[0].source.url : 'https://www.joeyoungblood.com/wp-content/uploads/2016/02/reddit-logo.jpg'}' alt='thumbnail'>
+                <div class=${data.data.preview ? 'lazy2' : null}><img data-src2='${data.data.preview ? data.data.preview.images[0].source.url : 'https://www.joeyoungblood.com/wp-content/uploads/2016/02/reddit-logo.jpg'}' alt='thumbnail'></div>
                 <div class='reddit-results_info'>
                   <span>Score: ${data.data.score}</span>
                   <a href='https://www.reddit.com${data.data.permalink}' target='_blank' rel='noopener noreferrer'>
@@ -132,6 +135,7 @@ function renderRedditData(data) {
               <hr>`
   });
   redditResults.innerHTML = result ? result : error;
+  loadImages(2);
   let lis = Array.from(document.querySelectorAll('.content_card-results2 li'));
   transition(lis);
 }
@@ -143,7 +147,7 @@ function renderYoutubeData(data) {
   data.forEach(data => {
     results += `<li class='youtube-results'>
                   <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
-                    <img src='${data.snippet.thumbnails.medium.url}' alt='thumbnail'>  
+                    <div class=lazy4><img data-src4='${data.snippet.thumbnails.medium.url}' alt='thumbnail'></div>
                   </a>
                   <div>
                     <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
@@ -157,6 +161,7 @@ function renderYoutubeData(data) {
                 <hr>`
   });
   youtubeResults.innerHTML = results ? results : error;
+  loadImages(4);
   let lis = Array.from(document.querySelectorAll('.content_card-results4 li'));
   transition(lis);
 }
@@ -168,17 +173,13 @@ function showError(data, value) {
                               </div>` : null;
 }
 
-function transition(elements) {
-  elements.forEach((li, i) => {
+function transition(element) {
+  
+  element.forEach((li, i) => {
    
-      li.style.animation = i < 5 ? `fadeIn ${i + 1}s` : `fadeIn 5s`;
+      li.style.animation = i < 4 ? `fadeIn ${1.5 + (i * .5)}s` : `fadeIn 3s`;
       li.style.opacity = 1;
   });
-}
-
-function openContent(element) {
-  console.log(element);
-  // window.open(url, '_blank', `toolbar=yes, scrollbars=yes, resizable=yes, top=${window.innerHeight/2}, left=${window.innerWidth/2}, width=500, height=500`);
 }
 
 form.addEventListener('submit', (e) => {
@@ -189,6 +190,9 @@ form.addEventListener('submit', (e) => {
   let searchContent = document.getElementById('content-select').value;
   
   if(searchTerm) {
+    setTimeout(() => {
+      mainContent.scrollIntoView({ behavior: 'smooth'});
+    }, 1000); 
     switch(searchContent) {
       case 'all':
         news.searchTerm = reddit.searchTerm = youtube.searchTerm = searchTerm;
@@ -222,6 +226,7 @@ Array.from(cards).forEach(card => card.addEventListener('click', (e) => {
 }));
 
 Array.from(newsCategories).forEach(category => category.addEventListener('click', (e) => {
+  news.searchTerm = '';
   news.category = e.target.dataset.category;
   news.init();
 }));
@@ -230,18 +235,32 @@ newsMenu.addEventListener('click', () => {
   newsNavbar.classList.toggle('collapse');
 })
 
+function loadImages(num) {
+
+  Array.from(document.querySelectorAll(`img[data-src${num}]`)).forEach((img) => {
+    img.setAttribute('src', img.getAttribute(`data-src${num}`));
+    img.onload = function() {
+      img.parentNode.style.background = 'transparent';
+      img.parentNode.style.height = 'auto';
+      img.parentNode.style.width = 'auto';
+      img.removeAttribute(`data-src${num}`);
+    };
+  });
+}
+
 function init() {
   news.init();
   reddit.init();
   youtube.init();
 }
 
-//optimization
-
-//responsiveness
-//loading data efficiently
-//accessibility 
-//transitions
 //styling
+
+//accessibility 
+//responsiveness
+//transitions
 //add web icon
+
 //refactor
+//optimization
+//loading data efficiently
