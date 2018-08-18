@@ -1,19 +1,68 @@
-#search {
-  padding: 1.8rem 0;
+.search-area {
   background: $dark;
+  padding: 1.2rem 0;
   display: flex;
   justify-content: center;
 
-  select {
-    max-width: 6.5rem;
-  }
+  #search {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 100px;
+    width: 400px;
 
-  input {
-    padding: .6rem .8rem;
-    font-size: 1.6rem;
-  }
+    > * {
+      border: none;
+      background: #1D3249;
 
-  .btn {
-    cursor: pointer;
+      transition: background-color .3s;
+
+      &:hover {
+        background-color: darken($color: #1D3249, $amount: 5%);
+      }
+    }
+    
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      font-size: .9rem;
+      font-weight: bold;
+      color: #777777;
+      width: 100%;
+      margin-right: -1px;
+      padding-left: 1.5rem;
+      border-radius: 100px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      background-image: url('../images/build/dropDown.png'); 
+      background-size: 3rem;
+      background-position: 100% 50%;
+      background-repeat: no-repeat;
+    }
+
+    input {
+      padding: 1.2rem 6rem 1.2rem 3rem;
+      font-size: 1.6rem;
+      text-align: center;
+      color: #a9a9a9;
+    }
+
+    .btn {
+      cursor: pointer;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      margin-left: -1px;
+      border-radius: 100px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      
+      img {
+        height: 2rem;
+        padding: 0 1rem;
+        transition: all .8s;
+      }
+    }
   }
 }

@@ -77,7 +77,6 @@ const youtube = {
 
 init();
 
-const mainContent = document.getElementsByClassName('content')[0];
 const cards = document.getElementsByClassName('content_card');
 const newsResults = document.querySelector('.content_card-results1');
 const newsCategories = document.querySelectorAll('.news-navbar li');
@@ -100,7 +99,7 @@ function renderNewsData(data) {
   data.forEach(data => {
 
     result += `<li class='news-result'>
-                <div class=${data.urlToImage ? 'lazy1' : null}><img class='lazy' data-src1='${data.urlToImage ? data.urlToImage: '#'}' class=${data.urlToImage ? null : 'hidden'} alt='news image'></div>
+                <div class=${data.urlToImage ? 'lazy1' : null}><img data-src1='${data.urlToImage ? data.urlToImage: '#'}' class=${data.urlToImage ? null : 'hidden'} alt='news image'></div>
                 <a href='${data.url}' target='_blank' rel='noopener noreferrer'>               
                   <h3>${data.title}</h3>
                   <p>${data.source.name}</p>                 
@@ -116,25 +115,31 @@ function renderNewsData(data) {
 
 function renderRedditData(data) {
   let result = '';
+  let topic = document.querySelector('.content_card--2 > p');
   let error = showError(data, reddit.searchTerm);
   console.log(data);
   data.forEach(data => {
+    let title = data.data.title.split(' ').slice(0, 25).join(' ');
     result += `<li class='reddit-results'>
                 <div class=${data.data.preview ? 'lazy2' : null}><img data-src2='${data.data.preview ? data.data.preview.images[0].source.url : 'https://www.joeyoungblood.com/wp-content/uploads/2016/02/reddit-logo.jpg'}' alt='thumbnail'></div>
                 <div class='reddit-results_info'>
                   <span>Score: ${data.data.score}</span>
                   <a href='https://www.reddit.com${data.data.permalink}' target='_blank' rel='noopener noreferrer'>
-                    <h3>${data.data.title}</h3>
+                    <h3>${title.split(' ').length == 25 ? title + '...' : title}</h3>
                     <p>${data.data.author}</p>
                   </a>
                   <a href='https://www.reddit.com/${data.data.subreddit_name_prefixed}' target='_blank' rel='noopener noreferrer'>
                     <p>Subreddit: ${data.data.subreddit}</p>
                   </a>
                 </div>
-              </li>
-              <hr>`
+              </li>`
   });
   redditResults.innerHTML = result ? result : error;
+  if (!error) {
+    topic.innerHTML = reddit.searchTerm? reddit.searchTerm : 'Popular';
+  } else {
+    topic.innerHTML = '';
+  }
   loadImages(2);
   let lis = Array.from(document.querySelectorAll('.content_card-results2 li'));
   transition(lis);
@@ -142,6 +147,7 @@ function renderRedditData(data) {
 
 function renderYoutubeData(data) {
   let results = '';
+  let topic = document.querySelector('.content_card--4 > p');
   let error = showError(data, youtube.searchTerm);
   console.log(data);
   data.forEach(data => {
@@ -161,6 +167,11 @@ function renderYoutubeData(data) {
                 <hr>`
   });
   youtubeResults.innerHTML = results ? results : error;
+  if (!error) {
+    topic.innerHTML = youtube.searchTerm? youtube.searchTerm : 'Trending';
+  } else {
+    topic.innerHTML = '';
+  }
   loadImages(4);
   let lis = Array.from(document.querySelectorAll('.content_card-results4 li'));
   transition(lis);
@@ -188,10 +199,15 @@ form.addEventListener('submit', (e) => {
   let searchBar = document.getElementById('search-bar');
   let searchTerm = searchBar.value;
   let searchContent = document.getElementById('content-select').value;
+  const searchBtn = document.querySelector('.btn img');
   
   if(searchTerm) {
+    searchBtn.src = 'images/src/spinner.gif';
+    searchBtn.style.height = '3rem';
     setTimeout(() => {
-      mainContent.scrollIntoView({ behavior: 'smooth'});
+      cards[0].scrollIntoView({ behavior: 'smooth'});
+      searchBtn.src = 'images/build/search.png';
+      searchBtn.style.height = '2rem';
     }, 1000); 
     switch(searchContent) {
       case 'all':
@@ -226,6 +242,13 @@ Array.from(cards).forEach(card => card.addEventListener('click', (e) => {
 }));
 
 Array.from(newsCategories).forEach(category => category.addEventListener('click', (e) => {
+  e.target.classList.toggle('bold');
+  newsCategories.forEach(category => {
+    if (category !== e.target) {
+      category.classList.remove('bold');
+    }
+  });
+
   news.searchTerm = '';
   news.category = e.target.dataset.category;
   news.init();
@@ -240,9 +263,7 @@ function loadImages(num) {
   Array.from(document.querySelectorAll(`img[data-src${num}]`)).forEach((img) => {
     img.setAttribute('src', img.getAttribute(`data-src${num}`));
     img.onload = function() {
-      img.parentNode.style.background = 'transparent';
-      img.parentNode.style.height = 'auto';
-      img.parentNode.style.width = 'auto';
+      img.parentNode.classList.remove(`lazy${num}`);
       img.removeAttribute(`data-src${num}`);
     };
   });

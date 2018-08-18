@@ -1,6 +1,6 @@
 .content {
   height: 105vh;
-  // padding: 2rem 3rem;
+  // padding: 1rem;
   background: $main;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -15,12 +15,15 @@
 
   &_card {
     background: $light;
-    border: 1px solid #AB978A;
-    border-radius: 3px;
-    box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.4);
+    border: 1px solid $dark;
     padding: 2rem;
     overflow-y: scroll;
     overflow-x: hidden;
+    transition: box-shadow .4s;
+
+    &:hover {
+      box-shadow: 0px 0px 7px 2px rgba(0,0,0,0.75);
+    }
     
     h2 {
       font-size: 2.2rem;
@@ -29,6 +32,7 @@
     }
 
     > span:first-of-type {
+      color: #4682b4;
       display: block;
       text-align: center;
     }
@@ -39,6 +43,12 @@
 
     &--2 {
       grid-area: box2;
+
+      > p {
+        font-size: 1.8rem;
+        color:  rgb(50, 147, 219);
+        text-transform: uppercase;
+      }
     }
 
     &--3 {
@@ -49,6 +59,12 @@
 
     &--4 {
       grid-area: box4;
+
+      > p {
+        font-size: 1.8rem;
+        color:  #ff0000;
+        text-transform: uppercase;
+      }
     }
 
     .error {
@@ -68,6 +84,16 @@
       width: 100%;
       display: flex;
       align-items: center;
+      min-height: 70px;
+      transition: transform .3s;
+
+      &:hover {
+        transform: scale(1.05)
+      }
+
+      img {
+        width: 15rem;
+      }
 
       a {
         margin-left: .8rem;
@@ -81,24 +107,29 @@
           font-size: 1.2rem;
         }
       }
-
-      img {
-        width: 15rem;
-      }
     }
   }
 
   &_card-results2 {
     width: 100%;
-    margin-top: 2.2rem;
+    margin-top: 1.2rem;
 
     .reddit-results {
       display: flex;
       width: 100%;
       margin: 1.2rem 0;
+      background: lighten($light, 2%);
+      border: 1px solid #fff;
+      border-radius: 3px;
+      box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
+
+      div:first-child {
+        align-self: center;
+      }
    
        img {
-        width: 20rem;
+        height: 100%;
+        width: 25rem;
       }
 
       .reddit-results_info {
@@ -106,11 +137,19 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
 
         a {
           text-align: center;
+        }
+
+        h3 {
+          margin-left: .5rem;
+        }
+
+        > *:hover:not(span) {
+          text-decoration: underline;
         }
       }
     }
@@ -122,14 +161,22 @@
     justify-content: center;
   
     img {
-      width: 4.5rem;
-      margin: .4rem 0 .8rem .8rem;
+      width: 5rem;
+      margin: 1rem .8rem;
+    }
+
+    a {
+      transition: all .2s;
+
+      &:hover {
+        transform: translateY(-4px);
+      }
     }
   }
 
   &_card-results4 {
     width: 100%;
-    margin-top: 2.2rem;
+    margin-top: 1.2rem;
 
     .youtube-results {
       display: flex; 
@@ -140,7 +187,7 @@
       font-size: 1.2rem;
 
       img {
-        height: 10rem;
+        height: 12rem;
       }
 
       h3 {
@@ -167,6 +214,7 @@
                         'box2'
                         'box4'
                         'box3';
+    grid-gap: 1.5rem;
 
     &_card {
       max-height: 70vh;
@@ -213,8 +261,8 @@
 }
 
 .lazy2 {
-  height: 15rem;
-  width: 20rem;
+  height: 20rem;
+  width: 25rem;
 }
 
 .lazy4 {
@@ -231,6 +279,9 @@ img[data-src4] {
   display: none;
 }
 
+.bold {
+  font-weight: bold;
+}
 
 
 

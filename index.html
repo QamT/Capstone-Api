@@ -17,24 +17,26 @@
     <p>All Your Entertainment In One Place</p>
   </header>
 
-  <form id="search">
-    <select id="content-select" aria-label="content select ">
-      <option value="all">All</option>
-      <option value="news">News</option>
-      <option value="reddit">Reddit</option>
-      <option value="youtube">Youtube</option>
-    </select>
-    <input type="text" id="search-bar" aria-label="search" spellcheck="true" placeholder="search">
-    <button type='submit' class="btn" id="submit">Go</button>
-  </form>
+  <div class="search-area">
+    <form id="search">
+        <select id="content-select" aria-label="content select ">
+          <option value="all">All</option>
+          <option value="news">News</option>
+          <option value="reddit">Reddit</option>
+          <option value="youtube">Youtube</option>
+        </select>
+        <input type="text" id="search-bar" aria-label="search" autocomplete='off' placeholder="Search" required>
+        <button type='submit' class="btn" id="submit"><img src="images/build/search.png" alt="search button"></button>
+      </form>
+  </div>
 
   <main class="content">
     <div class="content_card content_card--1">
       <h2>News</h2>
-      <span>powered by news api</span>
+      <span>Powered by News Api</span>
       <span><img class='menu' src="images/build/hamburgerMenu.png" alt="hamburger menu"></span>
       <ul class="news-navbar">
-        <li data-category='general'>General</li>
+        <li class='bold' data-category='general'>General</li>
         <li data-category='business'>Business</li>
         <li data-category='entertainment'>Entertainment</li>
         <li data-category='health'>Health</li>
@@ -46,7 +48,8 @@
     </div>
     <div class="content_card content_card--2">
       <h2>Reddit</h2>
-      <span>powered by reddit api</span>
+      <span>Powered by Reddit Api</span>
+      <p></p>
       <div class="content_card-results2" role="list"></div>
     </div>
     <div class="content_card content_card--3">
@@ -59,7 +62,8 @@
     </div>
     <div class="content_card content_card--4">
       <h2>Youtube</h2>
-      <span>powered by youtube api</span>
+      <span>Powered by Youtube Api</span>
+      <p>ff</p>
       <div class="content_card-results4" role="list"></div>
     </div>
   </main>
@@ -68,7 +72,7 @@
     <p>Created by Qamar</p>
   </footer>
 
+  <script src="assets/smoothscroll.min.js"></script>
   <script src="assets/main.js"></script>
-  <script src='https://unpkg.com/smoothscroll-polyfill@0.4.3/dist/smoothscroll.min.js'></script>
 </body>
 </html>
