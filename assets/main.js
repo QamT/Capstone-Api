@@ -277,8 +277,6 @@ function init() {
   youtube.init();
 }
 
-//responsiveness
-
 //refactor
 //optimization
 //add web icon
