@@ -410,8 +410,8 @@ img .reddit-results_info {
         padding-right: 3rem; } }
     @media only screen and (max-width: 360px) {
       .search-area #search input {
-        padding-left: .6rem;
-        padding-right: 1.6rem; } }
+        padding-left: 0rem;
+        padding-right: 0rem; } }
 
 .footer {
   background: #0F1626;
@@ -443,6 +443,6 @@ img .reddit-results_info {
     font-size: 2.2rem; }
   @media only screen and (max-width: 520px) {
     .header h1 {
-      font-size: 3.4rem; }
+      font-size: 3.2rem; }
     .header p {
-      font-size: 1.6rem; } }
+      font-size: 1.4rem; } }

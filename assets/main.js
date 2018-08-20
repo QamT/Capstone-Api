@@ -75,8 +75,6 @@ const youtube = {
   }
 }
 
-alert(window.innerWidth);
-
 init();
 
 const cards = document.getElementsByClassName('content_card');
