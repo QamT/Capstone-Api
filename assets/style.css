@@ -417,9 +417,8 @@ img .reddit-results_info {
           padding-left: 0rem;
           padding-right: 0rem; }
         .search-area #search select {
-          padding-left: 1rem;
-          background-size: 2rem;
-          background-position: 115% 50%; } }
+          padding-left: .5rem;
+          background-position: 100% 50%; } }
 
 .footer {
   background: #0F1626;

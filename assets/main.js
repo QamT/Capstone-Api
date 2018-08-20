@@ -205,7 +205,9 @@ form.addEventListener('submit', (e) => {
     searchBtn.src = 'images/src/spinner.gif';
     searchBtn.style.height = '3rem';
     setTimeout(() => {
-      cards[0].scrollIntoView({ behavior: 'smooth'});
+      if (window.innerWidth > 700) {
+        cards[0].scrollIntoView({ behavior: 'smooth'});
+      }
       searchBtn.src = 'images/build/search.png';
       searchBtn.style.height = '2rem';
     }, 1000); 
