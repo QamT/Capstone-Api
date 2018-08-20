@@ -406,8 +406,8 @@ img .reddit-results_info {
         transition: all .8s; }
     @media only screen and (max-width: 400px) {
       .search-area #search input {
-        padding-left: 2rem;
-        padding-right: 3rem; } }
+        padding-left: 0rem;
+        padding-right: 0rem; } }
     @media only screen and (max-width: 360px) {
       .search-area #search input {
         padding-left: 0rem;
