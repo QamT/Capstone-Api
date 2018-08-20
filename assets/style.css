@@ -408,8 +408,8 @@ img .reddit-results_info {
       .search-area #search {
         width: 360px; }
         .search-area #search input {
-          padding-left: 1rem;
-          padding-right: 2.2rem; } }
+          padding-left: 2rem;
+          padding-right: 3rem; } }
     @media only screen and (max-width: 360px) {
       .search-area #search {
         width: 320px; }
@@ -417,8 +417,7 @@ img .reddit-results_info {
           padding-left: 0rem;
           padding-right: 0rem; }
         .search-area #search select {
-          padding-left: .5rem;
-          background-position: 100% 50%; } }
+          padding-left: .5rem; } }
 
 .footer {
   background: #0F1626;
