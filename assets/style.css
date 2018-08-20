@@ -240,7 +240,7 @@ img .reddit-results_info {
       grid-template-columns: none;
       grid-template-rows: auto;
       grid-template-areas: 'box1' 'box2' 'box4' 'box3';
-      grid-gap: 1.5rem; }
+      grid-gap: 2rem; }
       .content_card {
         max-height: 90vh; }
       .content .news-result {
