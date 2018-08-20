@@ -37,7 +37,7 @@
       border-bottom-right-radius: 0;
       background-image: url('../images/build/dropDown.png'); 
       background-size: 3rem;
-      background-position: 100% 50%;
+      background-position: 110% 50%;
       background-repeat: no-repeat;
     }
 
@@ -76,6 +76,10 @@
       input {
         padding-left: 0rem;
         padding-right: 0rem;
+      }
+
+      select {
+        padding-left: 1rem;
       }
     }
   }

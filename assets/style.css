@@ -384,7 +384,7 @@ img .reddit-results_info {
       border-bottom-right-radius: 0;
       background-image: url("../images/build/dropDown.png");
       background-size: 3rem;
-      background-position: 100% 50%;
+      background-position: 110% 50%;
       background-repeat: no-repeat; }
     .search-area #search input {
       padding: 1.2rem 6rem 1.2rem 3rem;
@@ -411,7 +411,9 @@ img .reddit-results_info {
     @media only screen and (max-width: 360px) {
       .search-area #search input {
         padding-left: 0rem;
-        padding-right: 0rem; } }
+        padding-right: 0rem; }
+      .search-area #search select {
+        padding-left: 1rem; } }
 
 .footer {
   background: #0F1626;
