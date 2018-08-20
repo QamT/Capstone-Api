@@ -66,6 +66,8 @@
     }
 
     @media only screen and (max-width: 400px) {
+      width: 360px;
+
       input {
         padding-left: 2rem;
         padding-right: 3rem;
@@ -73,6 +75,8 @@
     }
 
     @media only screen and (max-width: 360px) {
+      width: 320px;
+
       input {
         padding-left: 0rem;
         padding-right: 0rem;
@@ -80,7 +84,7 @@
 
       select {
         padding-left: 1rem;
-        background-size: 2rem;
+        // background-size: 2rem;
         background-position: 110% 50%;
       }
     }

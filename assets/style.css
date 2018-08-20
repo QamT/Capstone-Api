@@ -405,17 +405,20 @@ img .reddit-results_info {
         padding: 0 1rem;
         transition: all .8s; }
     @media only screen and (max-width: 400px) {
-      .search-area #search input {
-        padding-left: 2rem;
-        padding-right: 3rem; } }
+      .search-area #search {
+        width: 360px; }
+        .search-area #search input {
+          padding-left: 2rem;
+          padding-right: 3rem; } }
     @media only screen and (max-width: 360px) {
-      .search-area #search input {
-        padding-left: 0rem;
-        padding-right: 0rem; }
-      .search-area #search select {
-        padding-left: 1rem;
-        background-size: 2rem;
-        background-position: 110% 50%; } }
+      .search-area #search {
+        width: 320px; }
+        .search-area #search input {
+          padding-left: 0rem;
+          padding-right: 0rem; }
+        .search-area #search select {
+          padding-left: 1rem;
+          background-position: 110% 50%; } }
 
 .footer {
   background: #0F1626;
