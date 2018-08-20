@@ -75,8 +75,7 @@ const youtube = {
   }
 }
 
-alert(window.innerHeight);
-// console.log(window.innerWidth);
+alert(window.innerWidth);
 
 init();
 
