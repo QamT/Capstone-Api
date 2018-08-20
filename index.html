@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>EntertainmentHub</title>
-  <link rel="preload" href="assets/style.css" as='style'>
-  <link rel="preload" href="assets/main.js" as='script'>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -19,7 +17,7 @@
 
   <div class="search-area">
     <form id="search">
-        <select id="content-select" aria-label="content select ">
+        <select id="content-select" aria-label="content select">
           <option value="all">All</option>
           <option value="news">News</option>
           <option value="reddit">Reddit</option>
@@ -31,28 +29,28 @@
   </div>
 
   <main class="content">
-    <div class="content_card content_card--1">
+    <div class="content_card content_card--1" tabindex="0" aria-label="news section">
       <h2>News</h2>
       <span>Powered by News Api</span>
       <span><img class='menu' src="images/build/hamburgerMenu.png" alt="hamburger menu"></span>
       <ul class="news-navbar">
-        <li class='bold' data-category='general'>General</li>
-        <li data-category='business'>Business</li>
-        <li data-category='entertainment'>Entertainment</li>
-        <li data-category='health'>Health</li>
-        <li data-category='science'>Science</li>
-        <li data-category='sports'>Sports</li>
-        <li data-category='technology'>Technology</li>
+        <li class='bold' data-category='general' tabindex="0">General</li>
+        <li data-category='business' tabindex="0">Business</li>
+        <li data-category='entertainment' tabindex="0">Entertainment</li>
+        <li data-category='health' tabindex="0">Health</li>
+        <li data-category='science' tabindex="0">Science</li>
+        <li data-category='sports' tabindex="0">Sports</li>
+        <li data-category='technology' tabindex="0">Technology</li>
       </ul>
       <ul class="content_card-results1"></ul>
     </div>
-    <div class="content_card content_card--2">
+    <div class="content_card content_card--2" tabindex="0" aria-label="reddit section">
       <h2>Reddit</h2>
       <span>Powered by Reddit Api</span>
       <p></p>
-      <div class="content_card-results2" role="list"></div>
+      <ul class="content_card-results2"></ul>
     </div>
-    <div class="content_card content_card--3">
+    <div class="content_card content_card--3" tabindex="0" aria-label="social media section">
       <h2>Social Media</h2>
       <div class="content_card-results3">
         <a href="https://www.facebook.com"><img src="images/build/facebook.png" alt="facebook"></a>
@@ -60,11 +58,11 @@
         <a href="https://www.googleplus.com"><img src="images/build/googleplus.png" alt="google plus"></a>
       </div>
     </div>
-    <div class="content_card content_card--4">
+    <div class="content_card content_card--4" tabindex="0" aria-label="youtube section">
       <h2>Youtube</h2>
       <span>Powered by Youtube Api</span>
-      <p>ff</p>
-      <div class="content_card-results4" role="list"></div>
+      <p></p>
+      <ul class="content_card-results4" role="list"></ul>
     </div>
   </main>
 
@@ -72,7 +70,6 @@
     <p>Created by Qamar</p>
   </footer>
 
-  <script src="assets/smoothscroll.min.js"></script>
   <script src="assets/main.js"></script>
 </body>
 </html>

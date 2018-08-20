@@ -119,13 +119,13 @@ function renderRedditData(data) {
   let error = showError(data, reddit.searchTerm);
   console.log(data);
   data.forEach(data => {
-    let title = data.data.title.split(' ').slice(0, 25).join(' ');
+    let title = data.data.title.split(' ').slice(0, 20).join(' ');
     result += `<li class='reddit-results'>
-                <div class=${data.data.preview ? 'lazy2' : null}><img data-src2='${data.data.preview ? data.data.preview.images[0].source.url : 'https://www.joeyoungblood.com/wp-content/uploads/2016/02/reddit-logo.jpg'}' alt='thumbnail'></div>
+                <div class=${data.data.preview ? 'lazy2' : null}><img data-src2='${data.data.preview ? data.data.preview.images[0].source.url : 'https://www.joeyoungblood.com/wp-content/uploads/2016/02/reddit-logo.jpg'}' alt='reddit thumbnail'></div>
                 <div class='reddit-results_info'>
                   <span>Score: ${data.data.score}</span>
                   <a href='https://www.reddit.com${data.data.permalink}' target='_blank' rel='noopener noreferrer'>
-                    <h3>${title.split(' ').length == 25 ? title + '...' : title}</h3>
+                    <h3>${title.split(' ').length == 20 ? title + '...' : title}</h3>
                     <p>${data.data.author}</p>
                   </a>
                   <a href='https://www.reddit.com/${data.data.subreddit_name_prefixed}' target='_blank' rel='noopener noreferrer'>
@@ -153,7 +153,8 @@ function renderYoutubeData(data) {
   data.forEach(data => {
     results += `<li class='youtube-results'>
                   <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
-                    <div class=lazy4><img data-src4='${data.snippet.thumbnails.medium.url}' alt='thumbnail'></div>
+                    <div class=lazy4><img data-src4='${data.snippet.thumbnails.medium.url}' alt='${data.snippet.title}'></div>
+                    <span class=hover>Go To Video</span>
                   </a>
                   <div>
                     <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
@@ -163,8 +164,7 @@ function renderYoutubeData(data) {
                       <p>${data.snippet.channelTitle}</p>
                     </a>
                   </div>               
-                </li>
-                <hr>`
+                </li>`
   });
   youtubeResults.innerHTML = results ? results : error;
   if (!error) {
@@ -179,7 +179,7 @@ function renderYoutubeData(data) {
 
 function showError(data, value) {
   return data.length === 0 ? `<div class='error'>
-                                <h3>No results found for ${value}</h3>
+                                <h3>No results found for <span>${value}</span></h3>
                                 <p>Try a different keyword</p>
                               </div>` : null;
 }
@@ -275,14 +275,8 @@ function init() {
   youtube.init();
 }
 
-//styling
-//style error page
-
-//accessibility 
 //responsiveness
-//transitions
-//add web icon
 
 //refactor
 //optimization
-//loading data efficiently
+//add web icon

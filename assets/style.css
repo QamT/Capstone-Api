@@ -51,7 +51,7 @@ html {
 
 .content {
   height: 105vh;
-  background: #a9b7c0;
+  background: #e1e8f0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -85,7 +85,8 @@ html {
     .content_card--3 {
       grid-area: box3;
       overflow: hidden;
-      padding-top: 1rem; }
+      padding-top: 1rem;
+      padding-bottom: 1rem; }
     .content_card--4 {
       grid-area: box4; }
       .content_card--4 > p {
@@ -93,16 +94,37 @@ html {
         color: #ff0000;
         text-transform: uppercase; }
     .content_card .error {
-      margin-top: 10rem;
+      margin-top: 3rem;
       text-align: center;
-      color: #cc0000;
       font-size: 1.6rem; }
+      .content_card .error h3 {
+        color: #cc0000; }
+        .content_card .error h3 span {
+          font-style: italic; }
+    .content_card .lazy1, .content_card .lazy2, .content_card .lazy4 {
+      background: url(../images/src/loading.gif);
+      background-size: cover; }
+    .content_card .lazy1 {
+      height: 10rem;
+      width: 15rem; }
+    .content_card .lazy2 {
+      height: 20rem;
+      width: 25rem; }
+    .content_card .lazy4 {
+      margin-bottom: .8rem;
+      height: 17rem;
+      width: 30rem; }
+    .content_card img[data-src1],
+    .content_card img[data-src2],
+    .content_card img[data-src4] {
+      opacity: 0; }
   .content_card-results1 {
     width: 100%;
     margin-top: 2.2rem; }
     .content_card-results1 .news-result {
       margin: 1.2rem 0;
       width: 100%;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       min-height: 70px;
@@ -114,10 +136,7 @@ html {
       .content_card-results1 .news-result a {
         margin-left: .8rem; }
         .content_card-results1 .news-result a h3 {
-          margin-bottom: .3rem;
-          font-size: 1.4rem; }
-        .content_card-results1 .news-result a p {
-          font-size: 1.2rem; }
+          margin-bottom: .3rem; }
   .content_card-results2 {
     width: 100%;
     margin-top: 1.2rem; }
@@ -125,6 +144,7 @@ html {
       display: flex;
       width: 100%;
       margin: 1.2rem 0;
+      font-size: 1.4rem;
       background: #fafafa;
       border: 1px solid #fff;
       border-radius: 3px;
@@ -135,7 +155,6 @@ html {
         height: 100%;
         width: 25rem; }
       .content_card-results2 .reddit-results .reddit-results_info {
-        font-size: 1.4rem;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -144,10 +163,13 @@ html {
         .content_card-results2 .reddit-results .reddit-results_info a {
           text-align: center; }
         .content_card-results2 .reddit-results .reddit-results_info h3 {
-          margin-left: .5rem; }
+          margin: 1.2rem .5rem 0 .5rem; }
+          .content_card-results2 .reddit-results .reddit-results_info h3 + p {
+            margin-bottom: 1.2rem; }
         .content_card-results2 .reddit-results .reddit-results_info > *:hover:not(span) {
           text-decoration: underline; }
   .content_card-results3 {
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center; }
@@ -158,6 +180,9 @@ html {
       transition: all .2s; }
       .content_card-results3 a:hover {
         transform: translateY(-4px); }
+    @media only screen and (min-height: 150px) {
+      .content_card-results3 {
+        align-items: center; } }
   .content_card-results4 {
     width: 100%;
     margin-top: 1.2rem; }
@@ -165,18 +190,51 @@ html {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 1.2rem 0;
+      margin: 2.2rem 0;
       width: 100%;
       font-size: 1.2rem; }
-      .content_card-results4 .youtube-results img {
-        height: 12rem; }
-      .content_card-results4 .youtube-results h3 {
+      .content_card-results4 .youtube-results a:first-of-type {
+        position: relative; }
+        .content_card-results4 .youtube-results a:first-of-type img {
+          width: 30rem;
+          border: 5px solid gainsboro;
+          border-radius: 3px; }
+        .content_card-results4 .youtube-results a:first-of-type .hover {
+          opacity: 0;
+          background: rgba(0, 0, 0, 0.25);
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          font-size: 2.2rem;
+          font-weight: bold;
+          width: 100%;
+          height: 100%;
+          transition: opacity .5s; }
+          .content_card-results4 .youtube-results a:first-of-type .hover:hover {
+            opacity: 1; }
+      .content_card-results4 .youtube-results h3, .content_card-results4 .youtube-results p {
         text-align: center; }
-      .content_card-results4 .youtube-results p {
-        text-align: center; }
-  @media (max-width: 1020px) {
-    .content .reddit-results img {
-      width: 15rem; } }
+        .content_card-results4 .youtube-results h3:hover, .content_card-results4 .youtube-results p:hover {
+          text-decoration: underline; }
+  @media only screen and (max-width: 1080px) {
+    .content .reddit-results
+img {
+      width: 20rem; }
+      .content .reddit-results
+img .reddit-results_info {
+        font-size: 1.2rem; }
+    .content .youtube-results a:first-of-type img {
+      width: 27rem; }
+    .content .lazy2 {
+      height: 15rem;
+      width: 20rem; }
+    .content .lazy4 {
+      height: 16rem;
+      width: 27rem; } }
   @media (max-width: 860px) {
     .content {
       height: auto;
@@ -185,39 +243,70 @@ html {
       grid-template-areas: 'box1' 'box2' 'box4' 'box3';
       grid-gap: 1.5rem; }
       .content_card {
-        max-height: 70vh; } }
-  @media (max-width: 620px) {
-    .content .reddit-results img {
-      width: 13rem; } }
+        max-height: 90vh; }
+      .content .news-result {
+        font-size: 1.4rem; }
+        .content .news-result img {
+          width: 20rem; }
+      .content .reddit-results {
+        font-size: 1.6rem; }
+        .content .reddit-results img {
+          width: 23rem; }
+      .content .youtube-results {
+        font-size: 1.4rem; }
+        .content .youtube-results a:first-of-type img {
+          width: 28rem; }
+      .content .lazy1 {
+        height: 14rem;
+        width: 20rem; }
+      .content .lazy2 {
+        height: 16rem;
+        width: 23rem; }
+      .content .lazy4 {
+        height: 17rem;
+        width: 28rem; } }
+  @media (max-width: 580px) {
+    .content .reddit-results {
+      font-size: 1.4rem; }
+      .content .reddit-results img {
+        width: 20rem; }
+    .content .youtube-results a:first-of-type img {
+      width: 25rem; }
+    .content .news-result, .content .youtube-results {
+      font-size: 1.3rem; }
+    .content .lazy2 {
+      height: 15rem;
+      width: 20rem; }
+    .content .lazy4 {
+      height: 16rem;
+      width: 25rem; } }
   @media (max-width: 460px) {
-    .content_card .reddit-results {
+    .content_card {
+      padding: 1rem; }
+      .content_card .reddit-results img {
+        width: 17rem; }
+      .content_card .news-result {
+        flex-direction: column; }
+        .content_card .news-result h3, .content_card .news-result p {
+          text-align: center; }
+      .content_card .youtube-results a:first-of-type img {
+        width: 22rem; }
+    .content .lazy2 {
+      height: 12rem;
+      width: 17rem; }
+    .content .lazy4 {
+      height: 14rem;
+      width: 22rem; } }
+  @media only screen and (max-width: 420px) {
+    .content .reddit-results {
       flex-direction: column; }
-      .content_card .reddit-results > div:first-of-type {
+      .content .reddit-results > div:first-of-type {
         margin: 0 auto; }
-    .content_card .news-result {
-      flex-direction: column; }
-      .content_card .news-result h3, .content_card .news-result p {
-        text-align: center; } }
-
-.lazy1, .lazy2, .lazy4 {
-  background: url(../images/src/loading.gif);
-  background-size: cover; }
-
-.lazy1, .lazy4 {
-  height: 10rem;
-  width: 15rem; }
-
-.lazy2 {
-  height: 20rem;
-  width: 25rem; }
-
-.lazy4 {
-  margin-bottom: .8rem; }
-
-img[data-src1],
-img[data-src2],
-img[data-src4] {
-  opacity: 0; }
+        .content .reddit-results > div:first-of-type img {
+          width: 20rem; } }
+  .content .lazy2 {
+    height: 16rem;
+    width: 20rem; }
 
 .hidden {
   display: none; }
@@ -316,6 +405,14 @@ img[data-src4] {
         height: 2rem;
         padding: 0 1rem;
         transition: all .8s; }
+    @media only screen and (max-width: 400px) {
+      .search-area #search input {
+        padding-left: 2rem;
+        padding-right: 3rem; } }
+    @media only screen and (max-width: 360px) {
+      .search-area #search input {
+        padding-left: .6rem;
+        padding-right: 1.6rem; } }
 
 .footer {
   background: #0F1626;
@@ -345,3 +442,8 @@ img[data-src4] {
     letter-spacing: .7px; }
   .header p {
     font-size: 2.2rem; }
+  @media only screen and (max-width: 520px) {
+    .header h1 {
+      font-size: 3.4rem; }
+    .header p {
+      font-size: 1.6rem; } }

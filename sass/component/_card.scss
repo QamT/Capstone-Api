@@ -55,6 +55,7 @@
       grid-area: box3;
       overflow: hidden;
       padding-top: 1rem;
+      padding-bottom: 1rem;
     }
 
     &--4 {
@@ -68,10 +69,44 @@
     }
 
     .error {
-      margin-top: 10rem;
+      margin-top: 3rem;
       text-align: center;
-      color: #cc0000;
       font-size: 1.6rem;
+
+      h3 {
+        color: #cc0000;
+
+        span {
+          font-style: italic;
+        }
+      }
+    }
+
+    .lazy1, .lazy2, .lazy4 {
+      background: url(../images/src/loading.gif);
+      background-size: cover;
+    }
+    
+    .lazy1{
+      height: 10rem;
+      width: 15rem;
+    }
+    
+    .lazy2 {
+      height: 20rem;
+      width: 25rem;
+    }
+    
+    .lazy4 {
+      margin-bottom: .8rem;
+      height: 17rem;
+      width: 30rem;
+    }
+    
+    img[data-src1], 
+    img[data-src2], 
+    img[data-src4] {
+      opacity: 0;
     }
   }
 
@@ -82,6 +117,7 @@
     .news-result {
       margin: 1.2rem 0;
       width: 100%;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       min-height: 70px;
@@ -100,11 +136,6 @@
 
         h3 {
           margin-bottom: .3rem;
-          font-size: 1.4rem;
-        }
-
-        p {
-          font-size: 1.2rem;
         }
       }
     }
@@ -118,6 +149,7 @@
       display: flex;
       width: 100%;
       margin: 1.2rem 0;
+      font-size: 1.4rem;
       background: lighten($light, 2%);
       border: 1px solid #fff;
       border-radius: 3px;
@@ -133,7 +165,6 @@
       }
 
       .reddit-results_info {
-        font-size: 1.4rem;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -145,7 +176,11 @@
         }
 
         h3 {
-          margin-left: .5rem;
+          margin: 1.2rem .5rem 0 .5rem;
+
+          + p {
+            margin-bottom: 1.2rem;
+          }
         }
 
         > *:hover:not(span) {
@@ -156,6 +191,7 @@
   }
 
   &_card-results3 {
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -172,6 +208,10 @@
         transform: translateY(-4px);
       }
     }
+
+    @media only screen and (min-height: 150px) {
+      align-items: center;
+    }
   }
 
   &_card-results4 {
@@ -182,27 +222,75 @@
       display: flex; 
       flex-direction: column;
       align-items: center;
-      margin: 1.2rem 0;
+      margin: 2.2rem 0;
       width: 100%;
       font-size: 1.2rem;
 
-      img {
-        height: 12rem;
+      a:first-of-type {
+        position: relative;
+
+        img {
+          width: 30rem;
+          border: 5px solid darken($light , 10%);
+          border-radius: 3px;
+        }
+
+        .hover {
+          opacity: 0;
+          background: rgba(0,0,0,0.25);
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          font-size: 2.2rem;
+          font-weight: bold;
+          width: 100%;
+          height: 100%;
+          transition: opacity .5s;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
       }
 
-      h3 {
+      h3, p {
         text-align: center;
-      }
 
-      p {
-        text-align: center;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
 
-  @media (max-width: 1020px) {
-    .reddit-results img {
-      width: 15rem;
+  @media only screen and (max-width: 1080px) {
+    .reddit-results 
+      img {
+      width: 20rem;
+
+      .reddit-results_info {
+        font-size: 1.2rem;
+      }
+    }
+
+    .youtube-results a:first-of-type {
+      img {
+        width: 27rem;
+      }
+    }
+ 
+    .lazy2 {
+      height: 15rem;
+      width: 20rem;
+    }
+    
+    .lazy4 {
+      height: 16rem;
+      width: 27rem;
     }
   }
 
@@ -217,26 +305,89 @@
     grid-gap: 1.5rem;
 
     &_card {
-      max-height: 70vh;
+      max-height: 90vh;
+    }
+
+    .news-result {
+      font-size: 1.4rem;
+
+      img {
+        width: 20rem;
+      }
+    }
+
+    .reddit-results {
+      font-size: 1.6rem;
+      
+      img {
+        width: 23rem;
+      }
+    }
+
+    .youtube-results {
+      font-size: 1.4rem;
+
+      a:first-of-type {
+        img {
+          width: 28rem;
+        }
+      }
+    }
+
+    .lazy1{
+      height: 14rem;
+      width: 20rem;
+    }
+    
+    .lazy2 {
+      height: 16rem;
+      width: 23rem;
+    }
+    
+    .lazy4 {
+      height: 17rem;
+      width: 28rem;
     }
   }
 
-  @media (max-width: 620px) {
-    .reddit-results img {
-      width: 13rem;
+  @media (max-width: 580px) {
+    .reddit-results {
+      font-size: 1.4rem;
+
+      img {
+        width: 20rem;
+      }
+    }
+
+    .youtube-results a:first-of-type {
+      img {
+        width: 25rem;
+      }
+    }
+
+    .news-result, .youtube-results {
+      font-size: 1.3rem;
+    }
+
+    .lazy2 {
+      height: 15rem;
+      width: 20rem;
+    }
+    
+    .lazy4 {
+      height: 16rem;
+      width: 25rem;
     }
   }
 
   @media (max-width: 460px) {
     &_card {
-      //max-height: 
+      padding: 1rem;
 
       .reddit-results {
-        flex-direction: column;
-
-        > div:first-of-type {
-           margin: 0 auto;
-        }
+        img {
+          width: 17rem;
+        }  
       }
 
       .news-result {
@@ -246,33 +397,43 @@
           text-align: center;
         }
       }
+
+      .youtube-results a:first-of-type {
+        img {
+          width: 22rem;
+        }
+      }
+    }
+
+    .lazy2 {
+      height: 12rem;
+      width: 17rem;
+    }
+    
+    .lazy4 {
+      height: 14rem;
+      width: 22rem;
     }
   }
-}
 
-.lazy1, .lazy2, .lazy4 {
-  background: url(../images/src/loading.gif);
-  background-size: cover;
-}
+  @media only screen and (max-width: 420px) {
+    .reddit-results {
+      flex-direction: column;
 
-.lazy1, .lazy4 {
-  height: 10rem;
-  width: 15rem;
-}
+      > div:first-of-type {
+          margin: 0 auto;
 
-.lazy2 {
-  height: 20rem;
-  width: 25rem;
-}
+          img {
+            width: 20rem;
+          }
+      }
+    }
+  }
 
-.lazy4 {
-  margin-bottom: .8rem;
-}
-
-img[data-src1], 
-img[data-src2], 
-img[data-src4] {
-  opacity: 0;
+  .lazy2 {
+    height: 16rem;
+    width: 20rem;
+  }
 }
 
 .hidden {

@@ -64,5 +64,19 @@
         transition: all .8s;
       }
     }
+
+    @media only screen and (max-width: 400px) {
+      input {
+        padding-left: 2rem;
+        padding-right: 3rem;
+      }
+    }
+
+    @media only screen and (max-width: 360px) {
+      input {
+        padding-left: .6rem;
+        padding-right: 1.6rem;
+      }
+    }
   }
 }
