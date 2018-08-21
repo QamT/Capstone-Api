@@ -1,6 +1,6 @@
 .header {
   height: 91vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/build/background1.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/build/background.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -9,11 +9,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.2rem 0;
 
   > * {
     opacity: 0;
-    animation: slideTop .8s ease-in-out .2s both; 
+    animation: slideTop .7s ease-in-out .2s both; 
   }
 
   h1 {
