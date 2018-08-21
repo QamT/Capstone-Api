@@ -24,16 +24,16 @@
           <option value="reddit">Reddit</option>
           <option value="youtube">Youtube</option>
         </select>
-        <input type="text" id="search-bar" aria-label="search" autocomplete='off' placeholder="Search" required>
-        <button type='submit' class="btn" id="submit"><img src="images/build/search.png" alt="search button"></button>
+        <input type="text" id="search-bar" autocomplete='off' placeholder="Search" required>
+        <button type='submit' class="btn"><img src="images/build/search.png" alt="search button"></button>
       </form>
   </div>
 
   <main class="content">
-    <div class="content_card content_card--1" tabindex="0" aria-label="news section">
+    <section class="content_card content_card--1" aria-label="news section">
       <h2>News</h2>
       <span>Powered by News Api</span>
-      <span><img class='menu' src="images/build/hamburgerMenu.png" alt="hamburger menu"></span>
+      <span><img class='menu' src="images/build/hamburgerMenu.png" alt="menu"></span>
       <ul class="news-navbar">
         <li class='bold' data-category='general' tabindex="0">General</li>
         <li data-category='business' tabindex="0">Business</li>
@@ -43,28 +43,28 @@
         <li data-category='sports' tabindex="0">Sports</li>
         <li data-category='technology' tabindex="0">Technology</li>
       </ul>
-      <ul class="content_card-results1"></ul>
-    </div>
-    <div class="content_card content_card--2" tabindex="0" aria-label="reddit section">
+      <ul class="news-results"></ul>
+    </section>
+    <section class="content_card content_card--2" aria-label="reddit section">
       <h2>Reddit</h2>
       <span>Powered by Reddit Api</span>
       <p></p>
-      <ul class="content_card-results2"></ul>
-    </div>
-    <div class="content_card content_card--3" tabindex="0" aria-label="social media section">
+      <ul class="reddit-results"></ul>
+    </section>
+    <section class="content_card content_card--3" aria-label="social media section">
       <h2>Social Media</h2>
-      <div class="content_card-results3">
+      <div class="media-icons">
         <a href="https://www.facebook.com" target="_blank" rel='noopener noreferrer'><img src="images/build/facebook.png" alt="facebook"></a>
         <a href="https://www.twitter.com" target="_blank" rel='noopener noreferrer'><img src="images/build/twitter.png" alt="twitter"></a>
         <a href="https://www.googleplus.com" target="_blank" rel='noopener noreferrer'><img src="images/build/googleplus.png" alt="google plus"></a>
       </div>
-    </div>
-    <div class="content_card content_card--4" tabindex="0" aria-label="youtube section">
+    </section>
+    <section class="content_card content_card--4" aaria-label="youtube section">
       <h2>Youtube</h2>
       <span>Powered by Youtube Api</span>
       <p></p>
-      <ul class="content_card-results4" role="list"></ul>
-    </div>
+      <ul class="youtube-results"></ul>
+    <section>
   </main>
 
   <footer class="footer">
@@ -74,3 +74,4 @@
   <script src="assets/main.js"></script>
 </body>
 </html>
+
