@@ -5,7 +5,6 @@
 html, body {
   height: 100%;
   margin: 0;
-  // overflow-x: hidden;
 }
 
 h1,
@@ -16,7 +15,8 @@ h5,
 h6,
 p,
 input,
-ul {
+ul,
+button {
   margin: 0;
   padding: 0;
 }
@@ -30,10 +30,6 @@ li {
   list-style: none;
 }
 
-select {
-  border-radius: 0;
-}
-
-select, input, label {
+select, input, button {
   cursor: pointer;
 }
