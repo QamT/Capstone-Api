@@ -337,12 +337,13 @@ img-info {
         margin-bottom: .8rem;
         border-right: none; } }
 
-.news-menu img {
+.news-menu {
   display: none; }
   @media (max-width: 1080px) {
-    .news-menu img {
-      display: block;
-      width: 4rem; } }
+    .news-menu {
+      display: block; }
+      .news-menu img {
+        width: 4rem; } }
 
 .collapse {
   height: 20rem; }
