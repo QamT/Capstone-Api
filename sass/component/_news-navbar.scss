@@ -36,12 +36,15 @@
   }
 }
 
-.news-menu img {
+.news-menu {
   display: none;
 
   @media (max-width: 1080px) {
     display: block;
-    width: 4rem;
+
+    img {
+      width: 4rem;
+    }
   }
 }
 
