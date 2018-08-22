@@ -44,7 +44,7 @@ const form = document.getElementById('search'),
       newsResults = document.getElementsByClassName('news-results')[0],
       newsCategories = document.querySelectorAll('.news-navbar li'),
       newsNavbar = document.getElementsByClassName('news-navbar')[0],
-      newsMenu = document.getElementsByClassName('menu')[0],
+      newsMenu = document.getElementsByClassName('news-menu')[0],
       redditResults = document.getElementsByClassName('reddit-results')[0],
       youtubeResults = document.getElementsByClassName('youtube-results')[0];
 
@@ -58,7 +58,7 @@ function fetchData(url) {
 
 function renderNewsData(data) {
   let result = '';
-  let error = showError(data, news.searchTerm);
+  let error = showError(data, news.searchTerm, 'news');
   console.log(data);
   data.forEach(data => {
     result += `<li class='news-results_result'>
@@ -79,7 +79,7 @@ function renderNewsData(data) {
 function renderRedditData(data) {
   let result = '';
   let topic = document.querySelector('.content_card--2 > p');
-  let error = showError(data, reddit.searchTerm);
+  let error = showError(data, reddit.searchTerm, 'reddit');
   console.log(data);
   data.forEach(data => {
     let title = data.data.title.split(' ').splice(0, 20).join(' ');
@@ -111,7 +111,7 @@ function renderRedditData(data) {
 function renderYoutubeData(data) {
   let results = '';
   let topic = document.querySelector('.content_card--4 > p');
-  let error = showError(data, youtube.searchTerm);
+  let error = showError(data, youtube.searchTerm, 'youtube');
   console.log(data);
   data.forEach(data => {
     results += `<li class='youtube-results_result'>
@@ -158,9 +158,9 @@ function loadImages(num) {
   });
 }
 
-function showError(data, value) {
-  return data.length === 0 ? `<div class='error'>
-                                <h3>No results found for <span>${value}</span></h3>
+function showError(data, value, section) {
+  return data.length === 0 ? `<div aria-live='polite' class='error'>
+                                <h3>No results found for <span>${value}</span> in ${section} section</h3>
                                 <p>Try a different keyword</p>
                               </div>` : null;
 }
@@ -209,15 +209,33 @@ form.addEventListener('submit', (e) => {
 });
 
 
-Array.from(cards).forEach(card => card.addEventListener('click', (e) => {
-  if (e.target.parentElement.nodeName === 'A' && window.innerHeight > 600 && window.innerWidth > 860) {
+Array.from(cards).forEach(card => {
+  card.addEventListener('click', openLink);
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      openLink(e);
+    }
+  });
+});
+
+function openLink(e) {
+  if ((e.target.parentElement.nodeName === 'A' || e.target.nodeName === 'A') && window.innerHeight > 600 && window.innerWidth > 860) {
     e.preventDefault();
-    let url = e.target.parentElement.attributes[0].nodeValue;
+    let url = e.target.parentElement.href ? e.target.parentElement.href : e.target.href;
     window.open(url, '_blank', `toolbar=yes,scrollbars=yes,resizable=yes,top=${window.innerHeight/4},left=${window.innerWidth/4},width=${window.innerWidth/(1.7)},height=${window.innerHeight/(1.5)}`);
   }
-}));
+}
 
-Array.from(newsCategories).forEach(category => category.addEventListener('click', (e) => {
+Array.from(newsCategories).forEach(category => {
+  category.addEventListener('click', highlightCategory);
+  category.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      highlightCategory(e);
+    }
+  });
+});
+
+function highlightCategory(e) {
   e.target.classList.toggle('bold');
   newsCategories.forEach(category => {
     if (category !== e.target) {
@@ -228,11 +246,29 @@ Array.from(newsCategories).forEach(category => category.addEventListener('click'
   news.searchTerm = '';
   news.category = e.target.dataset.category;
   news.init();
-}));
+}
 
-newsMenu.addEventListener('click', () => {
+if (window.innerWidth <= 1080) {
+  newsCategories.forEach(category => {
+    category.setAttribute('aria-hidden', 'true');
+  });
+}
+
+newsMenu.addEventListener('click', collapseMenu);
+newsMenu.addEventListener('keydown', (e) => {
+  if (e.key = 'Enter') {
+    collapseMenu(e);
+  }
+});
+
+function collapseMenu(e) {
   newsNavbar.classList.toggle('collapse');
-})
+  let stateExpanded = newsMenu.getAttribute('aria-expanded');
+  newsMenu.setAttribute('aria-expanded', `${stateExpanded === 'true' ? 'false' : 'true'}`);
+  Array.from(newsCategories).forEach(category => {
+    category.setAttribute('aria-hidden', `${newsNavbar.classList.contains('collapse') ? 'false': 'true'}`);
+  });
+}
 
 // Start
 
