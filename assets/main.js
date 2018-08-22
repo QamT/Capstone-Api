@@ -1,5 +1,5 @@
 const news = {
-  URL: function(){
+  url() {
     return this.searchTerm ? `https://newsapi.org/v2/everything?q=${this.searchTerm}&language=en&sortBy=popularity&apiKey=${this.apiKey}` :
                              `https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&pageSize=10&apiKey=${this.apiKey}`;                     
   },
@@ -7,32 +7,32 @@ const news = {
   searchTerm: '',
   category: '',
   init() {
-    fetchData(this.URL())
+    fetchData(this.url())
     .then(data => renderNewsData(data.articles));
   }
 }
 
 const reddit = {
-  URL: function() {
+  url() {
     return this.searchTerm ? `https://www.reddit.com/search.json?q=${this.searchTerm}&limit=15` :
            `https://www.reddit.com/.json?limit=10`;
   },
   searchTerm: '',
   init() {
-    fetchData(this.URL())
+    fetchData(this.url())
     .then(data => renderRedditData(data.data.children));
   }
 }
 
 const youtube = {
-  URL: function() {
+  url() {
     return this.searchTerm ? `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.searchTerm}&maxResults=20&key=${this.apiKey}` :
     `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&regionCode=us&key=${this.apiKey}`
   },
   apiKey : 'AIzaSyAWIf0o8EKYS4YqbXrVLMmIR3-dOrLgteE',
   searchTerm: '',
   init() {
-    fetchData(this.URL())
+    fetchData(this.url())
     .then(data => renderYoutubeData(data.items));
   }
 }
@@ -62,7 +62,7 @@ function renderNewsData(data) {
   console.log(data);
   data.forEach(data => {
     result += `<li class='news-results_result'>
-                <div class=${data.urlToImage ? 'lazy1' : null}><img data-src1='${data.urlToImage ? data.urlToImage: '#'}' class=${data.urlToImage ? null : 'hidden'} alt='news image'></div>
+                <div class=${data.urlToImage ? 'lazy1' : null}><img data-src1='${data.urlToImage || '#'}' class=${data.urlToImage ? null : 'hidden'} alt='news image'></div>
                 <a href='${data.url}' target='_blank' rel='noopener noreferrer'>               
                   <h3>${data.title}</h3>
                   <p>${data.source.name}</p>                 
@@ -70,10 +70,10 @@ function renderNewsData(data) {
                 </li>
                 <hr>`
   });
-  newsResults.innerHTML = result ? result : error;
+  newsResults.innerHTML = result || error;
   loadImages(1);
-  let lis = Array.from(document.querySelectorAll('.news-results li'));
-  transition(lis);
+  let lis = document.querySelectorAll('.news-results li');
+  transition([...lis]);
 }
 
 function renderRedditData(data) {
@@ -97,15 +97,15 @@ function renderRedditData(data) {
                 </div>
               </li>`
   });
-  redditResults.innerHTML = result ? result : error;
+  redditResults.innerHTML = result || error;
   if (!error) {
-    topic.innerHTML = reddit.searchTerm ? reddit.searchTerm : 'Popular';
+    topic.textContent = reddit.searchTerm || 'Popular';
   } else {
-    topic.innerHTML = '';
+    topic.textContent = '';
   }
   loadImages(2);
-  let lis = Array.from(document.querySelectorAll('.reddit-results li'));
-  transition(lis);
+  let lis = document.querySelectorAll('.reddit-results li');
+  transition([...lis]);
 }
 
 function renderYoutubeData(data) {
@@ -115,12 +115,12 @@ function renderYoutubeData(data) {
   console.log(data);
   data.forEach(data => {
     results += `<li class='youtube-results_result'>
-                  <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
+                  <a href='https://www.youtube.com/watch?v=${data.id.videoId || data.id}' target='_blank' rel='noopener noreferrer'>
                     <div class=lazy4><img data-src4='${data.snippet.thumbnails.medium.url}' alt='${data.snippet.title}'></div>
                     <span class=video-hover>Go To Video</span>
                   </a>
                   <div>
-                    <a href='https://www.youtube.com/watch?v=${data.id.videoId ? data.id.videoId : data.id}' target='_blank' rel='noopener noreferrer'>
+                    <a href='https://www.youtube.com/watch?v=${data.id.videoId || data.id}' target='_blank' rel='noopener noreferrer'>
                       <h3>${data.snippet.title}</h3>
                     </a>
                     <a href='https://www.youtube.com/channel/${data.snippet.channelId}' target='_blank' rel='noopener noreferrer'>
@@ -129,15 +129,15 @@ function renderYoutubeData(data) {
                   </div>               
                 </li>`
   });
-  youtubeResults.innerHTML = results ? results : error;
+  youtubeResults.innerHTML = results || error;
   if (!error) {
-    topic.innerHTML = youtube.searchTerm? youtube.searchTerm : 'Trending';
+    topic.textContent = youtube.searchTerm || 'Trending';
   } else {
-    topic.innerHTML = '';
+    topic.textContent = '';
   }
   loadImages(4);
-  let lis = Array.from(document.querySelectorAll('.youtube-results li'));
-  transition(lis);
+  let lis = document.querySelectorAll('.youtube-results li');
+  transition([...lis]);
 }
 
 //Functions relevant to cards
@@ -149,7 +149,7 @@ function transition(elements) {
 }
 
 function loadImages(num) {
-  Array.from(document.querySelectorAll(`img[data-src${num}]`)).forEach((img) => {
+  [...document.querySelectorAll(`img[data-src${num}]`)].forEach((img) => {
     img.setAttribute('src', img.getAttribute(`data-src${num}`));
     img.onload = function() {
       img.parentNode.classList.remove(`lazy${num}`);
@@ -209,7 +209,7 @@ form.addEventListener('submit', (e) => {
 });
 
 
-Array.from(cards).forEach(card => {
+[...cards].forEach(card => {
   card.addEventListener('click', openLink);
   card.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -221,12 +221,12 @@ Array.from(cards).forEach(card => {
 function openLink(e) {
   if ((e.target.parentElement.nodeName === 'A' || e.target.nodeName === 'A') && window.innerHeight > 600 && window.innerWidth > 860) {
     e.preventDefault();
-    let url = e.target.parentElement.href ? e.target.parentElement.href : e.target.href;
+    let url = e.target.parentElement.href || e.target.href;
     window.open(url, '_blank', `toolbar=yes,scrollbars=yes,resizable=yes,top=${window.innerHeight/4},left=${window.innerWidth/4},width=${window.innerWidth/(1.7)},height=${window.innerHeight/(1.5)}`);
   }
 }
 
-Array.from(newsCategories).forEach(category => {
+[...newsCategories].forEach(category => {
   category.addEventListener('click', highlightCategory);
   category.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -265,7 +265,7 @@ function collapseMenu(e) {
   newsNavbar.classList.toggle('collapse');
   let stateExpanded = newsMenu.getAttribute('aria-expanded');
   newsMenu.setAttribute('aria-expanded', `${stateExpanded === 'true' ? 'false' : 'true'}`);
-  Array.from(newsCategories).forEach(category => {
+  [...newsCategories].forEach(category => {
     category.setAttribute('aria-hidden', `${newsNavbar.classList.contains('collapse') ? 'false': 'true'}`);
   });
 }
