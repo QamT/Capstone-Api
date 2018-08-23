@@ -1,6 +1,6 @@
 const news = {
   url() {
-    return this.searchTerm ? `https://newsapi.org/v2/everything?q=${this.searchTerm}&language=en&sortBy=popularity&apiKey=${this.apiKey}` :
+    return this.searchTerm ? `https://newsapi.org/v2/everything?q=${this.searchTerm}&language=en&sortBy=relevancy&apiKey=${this.apiKey}` :
                              `https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&pageSize=10&apiKey=${this.apiKey}`;                     
   },
   apiKey: '288be39487e849e69452bd97b766832e',
